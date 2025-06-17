@@ -1,0 +1,36 @@
+﻿@page "/authors"
+@model LibraryAspNet.Pages.AuthorsModel
+@{
+    ViewData["Title"] = "Authors";
+    }
+<h1>Authors overview</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Surname</th>
+            <th>First Name</th>
+            <th>Year 🚼</th>
+            <th>Year ✝️</th>
+            <th>Bio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model.Data)
+        {
+         <tr>
+            <td><a href="/author/@author.Id">@author.Surname</a>
+                </td>
+            <td>@author.Name</td>
+            <td>@author.YearOfBirth</td>
+            <td>@author.YearOfDeath</td>
+            <td>@((@author.Biography?.Length ?? 0) > 40
+                ? author.Biography?.Substring(0, 40) + "..."
+                :author.Biography)</td>
+        </tr>
+        }
+     </tbody>
+</table>
+    <p>
+        <a href="/edit/author/0" class="btn btn-outline-primary">Add author</a>
+    </p>

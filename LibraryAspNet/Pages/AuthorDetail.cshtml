@@ -1,0 +1,19 @@
+﻿@page "/author/{Id:int}"
+@model LibraryAspNet.Pages.AuthorDetailModel
+@{
+    ViewData["Title"] = Model.Data?.FullName;
+
+}
+@if(Model.Data == null)
+{
+    <p>Author not found</p>
+    return;
+    }
+<h1>@Model.Data.FullName</h1>
+<p>Born @(Model.Data.YearOfBirth + 
+    (Model.Data.YearOfDeath == null ? "" : ", died " + Model.Data.YearOfDeath)).</p>
+<p>@Model.Data.Biography</p>
+<p>    
+    <a href="/authors" class="btn btn-outline-primary">Back to authors overview</a>
+    <a href="/edit/author/@Model.Data.Id" class="btn btn-outline-primary">Edit author</a>
+</p>
